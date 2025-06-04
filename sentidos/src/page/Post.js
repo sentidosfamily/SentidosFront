@@ -77,12 +77,13 @@ export default function Post() {
                         <p className="post-autor">Por: {post.autor}</p>
                       </div>
                     </div>
-                    <button
+                     <div><button
                       className="btn-ver-mas"
                       onClick={() => navigate(`/post/${post._id}`)}
                     >
                       Ver más
                     </button>
+                  </div>
                   </div>
                 </div>
               );
