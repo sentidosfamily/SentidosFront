@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
-
 import HomePage from './page/HomePage.js'; 
 import Post from './page/Post.js'; 
 import Login from './components/Login';
