@@ -1,0 +1,180 @@
+/* --- Reset básicos para ul/li --- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  outline: none;
+}
+body {
+  margin-top: 120px; /* o la altura real de tu navbar */
+}
+
+/* --- Navbar Base con rojo suave --- */
+.navbar {
+  background-color: #f44336; /* rojo coral */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem 0rem 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Hace que ocupe todo el ancho */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 1000;
+}
+.logo-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: solid 2px white;
+  overflow: hidden;
+  background-color:rgba(203, 45, 39, 1); /* Opcional: mejora visibilidad si la imagen tiene transparencia */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img img {
+  height: 100%;
+  width: 120%;
+  object-fit: contain; /* ✅ Muestra toda la imagen sin recortarla */
+  display: block;
+}
+
+
+
+
+/* --- Logo en rojo más fuerte --- */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff; /* rojo intenso */
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px rgba(255, 215, 0, 0.2); /* sutil destello amarillo */
+}
+
+/* --- Botón hamburguesa --- */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.menu-toggle svg {
+  color: #fff; /* icono blanco */
+}
+
+/* --- Navegación desplegable móvil --- */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  position: absolute;
+  top: 4.5rem;
+  left: 0;
+  right: 0;
+  background-color: #f44336;
+  padding: 1rem;
+  gap: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a,
+.nav-links button {
+  font-size: 1rem;
+  color:#fff;
+  font-weight: bold;
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding:5px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+  color: #f44336;
+  background: white;
+  border-radius: 15px;
+  padding:5px;
+}
+
+.nav-links.show {
+  display: flex;
+}
+
+/* --- Estilos en desktop --- */
+@media (min-width: 768px) {
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: static;
+    padding: 0;
+    gap: 2rem;
+  }
+}
+
+/* --- Usuario avatar + menú --- */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.user-info img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 2px solid #ffc107; /* amarillo dorado */
+  box-shadow: 0 0 6px rgba(255, 193, 7, 0.3);
+}
+
+.user-menu {
+  position: absolute;
+  top: 3.5rem;
+  right: 1rem;
+  background-color:rgb(235, 27, 69); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  display: none;
+  z-index: 999;
+}
+
+.group:hover .user-menu {
+  display: block;
+  
+}
+
+/* --- Botón de login con amarillo --- */
+.login-btn {
+  background-color: #ffc107;
+  color: #b71c1c;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #ffca28;
+  color: #880e4f;
+}

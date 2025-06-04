@@ -1,0 +1,110 @@
+/* HomePage.css */
+
+.mis-posts-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .mis-posts-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #00695c;
+  }
+  
+  .post-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s ease;
+  }
+  
+  .post-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .post-content-overlay {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* fondo oscuro transparente */
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid white;
+  }
+  
+  .autor {
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  .post-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .post-actions button {
+    padding: 8px 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .post-actions button:first-child {
+    background-color: #ffb300;
+    color: black;
+  }
+  
+  .post-actions button:first-child:hover {
+    background-color: #ffa000;
+  }
+  
+  .post-actions button:last-child {
+    background-color: #e53935;
+    color: white;
+  }
+  
+  .post-actions button:last-child:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .post-card {
+      height: auto;
+      flex-direction: column;
+    }
+  
+    .post-content-overlay {
+      padding: 15px;
+    }
+  
+    .post-actions {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+  

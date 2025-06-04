@@ -1,0 +1,33 @@
+.socio-form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffe5e0;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .socio-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .socio-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: coral;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .socio-form button:hover {
+    background-color: #e95d3c;
+  }
+  
