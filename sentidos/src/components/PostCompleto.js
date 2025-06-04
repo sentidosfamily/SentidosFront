@@ -31,7 +31,7 @@ const PostCompleto = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/posts/${id}`);
+        const res = await fetch(`https://sentidos-front-lkxh.vercel.app/posts/${id}`);
         const data = await res.json();
         setPost(data);
         setCargando(false);
