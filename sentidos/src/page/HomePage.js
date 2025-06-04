@@ -102,12 +102,14 @@ export default function HomePage() {
                           <h4 className="autor">Por: {post.autor}</h4>
                         </div>
                       </div>
-                      <button
-                        className="btn-ver-mas"
-                        onClick={() => navigate(`post/${post._id}`)}
-                      >
-                        Ver más
-                      </button>
+                    <div>
+                        <button
+                          className="btn-ver-mas"
+                          onClick={() => navigate(`/post/${post._id}`)}
+                        >
+                          Ver más
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
