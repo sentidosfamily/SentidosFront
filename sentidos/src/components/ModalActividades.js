@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/ModalActividades.css";
 
-const API_URL = "http://localhost:5000/api/actividades";
+const API_URL = "https://sentidos-front-lkxh.vercel.app/api/actividades";
 
 function ModalActividades() {
   const [actividad, setActividad] = useState(null);
@@ -54,7 +54,7 @@ function ModalActividades() {
             className="btn-ver-mas"
             onClick={() => {
               cerrarModal();
-              window.location.href = "http://localhost:3000/actividades";
+              window.location.href = "https://sentidos-front-6ir24shhp-sentidospadres-projects.vercel.app/actividades";
             }}
           >
             Ver más
