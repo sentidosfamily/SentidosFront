@@ -54,7 +54,7 @@ function ModalActividades() {
             className="btn-ver-mas"
             onClick={() => {
               cerrarModal();
-              window.location.href = "https://sentidos-front-6ir24shhp-sentidospadres-projects.vercel.app/actividades";
+              window.location.href = "https://sentidos-front.vercel.app/actividades";
             }}
           >
             Ver más
