@@ -118,11 +118,13 @@ main {
 /* Overlay oscuro para mejorar legibilidad del texto */
 .post-content-overlay {
   background: rgba(0, 0, 0, 0.55);
-  border-radius: 0 0 12px 12px;
-  padding: 12px 15px;
+  color: white;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
 }
 
 .post-header {
