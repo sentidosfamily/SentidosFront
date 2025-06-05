@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
-import logoImg from "../assets/SentidosLogo.png";
+import logoImg from "../assets/Sentidos Flap.png";
 import "../style/Navbar.css";
 
 const DEFAULT_AVATAR = "https://cdn-icons-png.flaticon.com/512/64/64572.png";
@@ -44,8 +44,9 @@ export default function Navbar() {
   if (loading) {
     return (
       <nav className="navbar">
-        <div className="avatar-img">
-          <img src={logoImg} alt="Logo Sentidos" className="avatar-img" />
+        <div className="logo-img animated-logo">
+          <img src={logoImg} alt="Logo Sentidos" className="logo-image" />
+          <div className="light-shine" />
         </div>
       </nav>
     );
@@ -62,10 +63,11 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="logo-img">
-        <img src={logoImg} alt="Logo Sentidos" />
+      <div className="logo-img animated-logo">
+        <img src={logoImg} alt="Logo Sentidos" className="logo-image" />
+        <div className="light-shine" />
       </div>
-      {/* <div className="logo">Sentidos</div> */}
+
       <button
         className="menu-toggle"
         onClick={() => setMenuOpen((prev) => !prev)}
@@ -76,73 +78,47 @@ export default function Navbar() {
 
       <ul className={`nav-links ${menuOpen ? "show" : ""}`}>
         <li>
-          <Link to="/" onClick={handleLinkClick}>
-            Inicio
-          </Link>
+          <Link to="/" onClick={handleLinkClick}>Inicio</Link>
         </li>
         <li>
-          <Link to="/actividades" onClick={handleLinkClick}>
-            Actividades
-          </Link>
+          <Link to="/actividades" onClick={handleLinkClick}>Actividades</Link>
         </li>
         <li>
-          <Link to="/contacto" onClick={handleLinkClick}>
-            Contacto
-          </Link>
+          <Link to="/contacto" onClick={handleLinkClick}>Contacto</Link>
         </li>
         <li>
-          <Link to="/post" onClick={handleLinkClick}>
-            Post
-          </Link>
+          <Link to="/post" onClick={handleLinkClick}>Post</Link>
         </li>
         {user ? (
           <>
             <li>
-              <Link
-                to={getDashboardLink()}
-                onClick={handleLinkClick}
-                className="dashboard-btn"
-              >
+              <Link to={getDashboardLink()} onClick={handleLinkClick} className="dashboard-btn">
                 Ir al Panel
               </Link>
             </li>
-
             {(user.role === "admin" || user.role === "superadmin") && (
               <>
                 <li>
-                  <Link to="/editar-publicaciones" onClick={handleLinkClick}>
-                    Mis Post
-                  </Link>
+                  <Link to="/editar-publicaciones" onClick={handleLinkClick}>Mis Post</Link>
                 </li>
                 <li>
-                  <Link to="/crear" onClick={handleLinkClick}>
-                    Crear
-                  </Link>
+                  <Link to="/crear" onClick={handleLinkClick}>Crear</Link>
                 </li>
                 <li>
-                  <Link to="/crear-actividades" onClick={handleLinkClick}>
-                    Crear Actividades
-                  </Link>
+                  <Link to="/crear-actividades" onClick={handleLinkClick}>Crear Actividades</Link>
                 </li>
               </>
             )}
-
             {user.role === "superadmin" && (
               <>
                 <li>
-                  <Link to="/congelar" onClick={handleLinkClick}>
-                    Congelar
-                  </Link>
+                  <Link to="/congelar" onClick={handleLinkClick}>Congelar</Link>
                 </li>
-
                 <li>
-                  <Link to="/restablecer" onClick={handleLinkClick}>
-                    Restablecer
-                  </Link>
+                  <Link to="/restablecer" onClick={handleLinkClick}>Restablecer</Link>
                 </li>
               </>
             )}
-
             <li className="user group">
               <div className="user-info">
                 <img
@@ -150,36 +126,20 @@ export default function Navbar() {
                   alt="avatar"
                   className="avatar-img"
                 />
-                <span>
-                  <b>{user.nombre || "Usuario"}</b>
-                </span>
+                <span><b>{user.nombre || "Usuario"}</b></span>
               </div>
             </li>
-
-            <button
-              onClick={() => {
-                handleLogout();
-                handleLinkClick();
-              }}
-            >
+            <button onClick={() => { handleLogout(); handleLinkClick(); }}>
               <b>Cerrar sesión</b>
             </button>
           </>
         ) : (
           <>
             <li>
-              <Link
-                to="/registro"
-                onClick={handleLinkClick}
-                className="register-btn"
-              >
-                Registrarse
-              </Link>
+              <Link to="/registro" onClick={handleLinkClick} className="register-btn">Registrarse</Link>
             </li>
             <li>
-              <Link to="/login" onClick={handleLinkClick} className="login-btn">
-                Ingresar
-              </Link>
+              <Link to="/login" onClick={handleLinkClick} className="login-btn">Ingresar</Link>
             </li>
           </>
         )}
