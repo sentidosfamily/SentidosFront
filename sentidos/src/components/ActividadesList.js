@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import "../style/CrearActividades.css";
 
-const API_URL = "https://sentidos-front-lkxh.vercel.app/api/actividades";
+const API_URL = "http://localhost:5000/api/actividades";
 
 const CrearActividades = ({ actividad, onEditar, onBorrar, onVerDetalle }) => {
   const {
@@ -25,7 +25,9 @@ const CrearActividades = ({ actividad, onEditar, onBorrar, onVerDetalle }) => {
 
   return (
     <div className="actividad-card">
-       <div className="title-content"> <h2 >{titulo}</h2></div>
+      <div className="title-content">
+        <h2>{titulo}</h2>
+      </div>
       <div
         className="card-img"
         onClick={onVerDetalle}
@@ -34,29 +36,15 @@ const CrearActividades = ({ actividad, onEditar, onBorrar, onVerDetalle }) => {
         <img src={imagen} alt={titulo} />
       </div>
       <div className="card-content">
-        <p>
-          <strong>Fecha:</strong> {fechaFormateada}
-        </p>
-        <p>
-          <strong>Hora:</strong> {hora && ` ${hora}`}
-        </p>
-        <p>
-          <strong>Objetivo:</strong> {objetivo}
-        </p>
-        <p>
-          <strong>Dirección:</strong> {direccion}
-        </p>
-        <p>
-          <strong>Organizador:</strong> {organizador}
-        </p>
+        <p><strong>Fecha:</strong> {fechaFormateada}</p>
+        <p><strong>Hora:</strong> {hora}</p>
+        <p><strong>Objetivo:</strong> {objetivo}</p>
+        <p><strong>Dirección:</strong> {direccion}</p>
+        <p><strong>Organizador:</strong> {organizador}</p>
       </div>
       <div className="card-actions">
-        <button className="btn btn-edit" onClick={onEditar}>
-          Editar
-        </button>
-        <button className="btn btn-delete" onClick={onBorrar}>
-          Borrar
-        </button>
+        <button className="btn btn-edit" onClick={onEditar}>Editar</button>
+        <button className="btn btn-delete" onClick={onBorrar}>Borrar</button>
       </div>
     </div>
   );
@@ -166,7 +154,6 @@ const ActividadesList = () => {
   const toggleFormulario = () => {
     setMostrarFormulario(!mostrarFormulario);
     if (!mostrarFormulario) {
-      // Reseteo por si veníamos de edición
       setModoEdicion(false);
       setNuevaActividad({
         titulo: "",
@@ -183,6 +170,21 @@ const ActividadesList = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNuevaActividad({ ...nuevaActividad, [name]: value });
+  };
+
+  const handleImagenChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNuevaActividad((prev) => ({ ...prev, imagen: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const eliminarImagen = () => {
+    setNuevaActividad((prev) => ({ ...prev, imagen: "" }));
   };
 
   const handleGuardarActividad = async () => {
@@ -265,48 +267,22 @@ const ActividadesList = () => {
         {mostrarFormulario && (
           <div className="formulario-actividad">
             <h3>{modoEdicion ? "Editar Actividad" : "Nueva Actividad"}</h3>
-            <input
-              name="titulo"
-              placeholder="Título"
-              value={nuevaActividad.titulo}
-              onChange={handleInputChange}
-            />
-            <input
-              name="fecha"
-              type="date"
-              value={nuevaActividad.fecha}
-              onChange={handleInputChange}
-            />
-            <input
-              name="hora"
-              placeholder="Hora"
-              value={nuevaActividad.hora}
-              onChange={handleInputChange}
-            />
-            <input
-              name="objetivo"
-              placeholder="Objetivo"
-              value={nuevaActividad.objetivo}
-              onChange={handleInputChange}
-            />
-            <input
-              name="direccion"
-              placeholder="Dirección"
-              value={nuevaActividad.direccion}
-              onChange={handleInputChange}
-            />
-            <input
-              name="organizador"
-              placeholder="Organizador"
-              value={nuevaActividad.organizador}
-              onChange={handleInputChange}
-            />
-            <input
-              name="imagen"
-              placeholder="URL de imagen"
-              value={nuevaActividad.imagen}
-              onChange={handleInputChange}
-            />
+            <input name="titulo" placeholder="Título" value={nuevaActividad.titulo} onChange={handleInputChange} />
+            <input name="fecha" type="date" value={nuevaActividad.fecha} onChange={handleInputChange} />
+            <input name="hora" placeholder="Hora" value={nuevaActividad.hora} onChange={handleInputChange} />
+            <input name="objetivo" placeholder="Objetivo" value={nuevaActividad.objetivo} onChange={handleInputChange} />
+            <input name="direccion" placeholder="Dirección" value={nuevaActividad.direccion} onChange={handleInputChange} />
+            <input name="organizador" placeholder="Organizador" value={nuevaActividad.organizador} onChange={handleInputChange} />
+            
+            <input type="file" accept="image/*" onChange={handleImagenChange} />
+            {nuevaActividad.imagen && (
+              <div style={{ marginTop: "10px" }}>
+                <img src={nuevaActividad.imagen} alt="Vista previa" style={{ maxWidth: "200px", maxHeight: "150px" }} />
+                <br />
+                <button onClick={eliminarImagen}>Eliminar imagen</button>
+              </div>
+            )}
+
             <button className="btn btn-save" onClick={handleGuardarActividad}>
               {modoEdicion ? "Actualizar" : "Guardar"}
             </button>
