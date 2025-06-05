@@ -26,6 +26,37 @@ body {
   justify-content: space-around;
   z-index: 1000;
 }
+
+
+
+
+/* --- Logo en rojo más fuerte --- */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff; /* rojo intenso */
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px rgba(255, 215, 0, 0.2); /* sutil destello amarillo */
+}
+/* Animación de aparición */
+.animated-logo {
+  position: relative;
+  animation: fadeInLogo 1s ease forwards;
+  overflow: hidden;
+}
+
+@keyframes fadeInLogo {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Imagen interna del logo */
 .logo-img {
   height: 100px;
   width: 100px;
@@ -45,16 +76,31 @@ body {
   display: block;
 }
 
+/* Haz de luz diagonal */
+.light-shine {
+  position: absolute;
+  top: 100%;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  transform: rotate(0deg);
+  animation: shineEffect 2s ease-in-out forwards;
+  pointer-events: none;
+}
 
-
-
-/* --- Logo en rojo más fuerte --- */
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fff; /* rojo intenso */
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 1px rgba(255, 215, 0, 0.2); /* sutil destello amarillo */
+@keyframes shineEffect {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -100%;
+  }
 }
 
 /* --- Botón hamburguesa --- */
