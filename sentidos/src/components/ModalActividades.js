@@ -49,7 +49,16 @@ function ModalActividades() {
           ✕
         </button>
 
-        <div className="modal-card-actions">
+        <div className="title-content">
+          <h2>{actividad.titulo}</h2>
+        </div>
+        <div className="modal-card-img">
+          <img
+            src={actividad.imagen || "https://via.placeholder.com/300x200"}
+            alt={actividad.titulo}
+          />
+        </div>
+             <div className="modal-card-actions">
           <button
             className="btn-ver-mas"
             onClick={() => {
@@ -59,15 +68,6 @@ function ModalActividades() {
           >
             Ver más
           </button>
-        </div>
-        <div className="title-content">
-          <h2>{actividad.titulo}</h2>
-        </div>
-        <div className="modal-card-img">
-          <img
-            src={actividad.imagen || "https://via.placeholder.com/300x200"}
-            alt={actividad.titulo}
-          />
         </div>
       </div>
     </div>
