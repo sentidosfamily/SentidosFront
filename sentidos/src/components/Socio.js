@@ -3,7 +3,6 @@ import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
 import Logo from "../assets/Juego.jpeg";
 import LogoSentidos from "../assets/Sentidos Flap Png.png";
-
 import "../style/Socio.css";
 import html2canvas from "html2canvas";
 
