@@ -1,13 +1,12 @@
 import React from "react";
-import {
-  Mail,
-  Phone,
-  MessageCircle,
-} from "lucide-react";
+import { Mail, Phone, MessageCircle, UserPlus } from "lucide-react";
 import "../style/ContactSection.css";
 import contactImage from "../assets/juego.png"; // Ajustá la ruta según tu estructura
+import { useNavigate } from "react-router-dom";
 
 export default function ContactSection() {
+  const navigate = useNavigate();
+
   return (
     <section className="contact-section">
       <div className="contact-container">
@@ -44,9 +43,14 @@ export default function ContactSection() {
               </li>
               <li>
                 <Mail className="icon" />
-                <a href="mailto:asociacion@ejemplo.org">
-                  asociacion@ejemplo.org
+                <a href="mailto:sentidospadres@gmail.com">
+                sentidospadres@gmail.com
                 </a>
+              </li>
+
+              <li>
+                <UserPlus className="icon" />
+                <a href="/registro">Hacete socio</a>
               </li>
             </ul>
           </div>
