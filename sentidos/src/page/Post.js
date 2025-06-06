@@ -47,6 +47,33 @@ export default function Post() {
         <p className="post-no-data">No hay posts disponibles.</p>
       ) : (
         <>
+         <div className="post-paginacion">
+            <button
+              onClick={() => cambiarPagina(paginaActual - 1)}
+              disabled={paginaActual === 1}
+              className="paginacion-btn"
+            >
+              {"<"}
+            </button>
+            {Array.from({ length: totalPaginas }, (_, i) => (
+              <button
+                key={i + 1}
+                className={`paginacion-btn ${
+                  paginaActual === i + 1 ? "activo" : ""
+                }`}
+                onClick={() => cambiarPagina(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => cambiarPagina(paginaActual + 1)}
+              disabled={paginaActual === totalPaginas}
+              className="paginacion-btn"
+            >
+              {">"}
+            </button>
+          </div>
           <div className="lista-posts-container">
             {postsActuales.map((post) => {
               const categoria = Array.isArray(post.categoria)
