@@ -15,7 +15,7 @@ export default function MyPost() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("https://sentidos-front-lkxh.vercel.app/posts");
+        const res = await fetch("https://sentidos-front-lkxh.vercel.app/api/posts");
         const data = await res.json();
 
         // Filtrar por autor
@@ -47,7 +47,7 @@ export default function MyPost() {
 
     if (confirm.isConfirmed) {
       try {
-        const res = await fetch(`https://sentidos-front-lkxh.vercel.app/posts/${id}`, {
+        const res = await fetch(`https://sentidos-front-lkxh.vercel.app/api/posts/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${user.token}`,
