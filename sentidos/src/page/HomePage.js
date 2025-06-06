@@ -105,7 +105,7 @@ export default function HomePage() {
                     <div>
                         <button
                           className="btn-ver-mas"
-                          onClick={() => navigate(`https://sentidos-front.vercel.app/post/${post._id}`)}
+                         onClick={() => navigate(`/post/${post._id}`)}
                         >
                           Ver más
                         </button>
