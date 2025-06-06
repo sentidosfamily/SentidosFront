@@ -37,7 +37,7 @@ const Actividades = () => {
   };
 
   const handleCompartir = (titulo, id) => {
-    const url = `http://localhost:3000/actividades`;
+    const url = `https://sentidos-front.vercel.app/actividades`;
     const texto = `Este evento va a estar genial, ¿querés asistir conmigo?\n${titulo}\n${url}`;
     if (navigator.share) {
       navigator
