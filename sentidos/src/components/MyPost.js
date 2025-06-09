@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "../context/AuthContext";
 import fondo from "../assets/Juego.jpeg";
-import "../style/MyPost.css"; // Asegurate de que esta hoja tenga los estilos usados
+import "../style/MyPost.css";
 
 export default function MyPost() {
   const [posts, setPosts] = useState([]);
@@ -18,9 +18,11 @@ export default function MyPost() {
         const res = await fetch("https://sentidos-front-lkxh.vercel.app/api/posts");
         const data = await res.json();
 
-        // Filtrar por autor
+        const userId = localStorage.getItem("userId");
+
+        // Filtrar posts que coinciden con userId
         const postsDelUsuario = data.filter(
-          (post) => post.autor === user.nombre
+          (post) => String(post.PostId) === String(userId)
         );
 
         setPosts(postsDelUsuario);
@@ -31,10 +33,8 @@ export default function MyPost() {
       }
     };
 
-    if (user) {
-      fetchPosts();
-    }
-  }, [user]);
+    fetchPosts();
+  }, []);
 
   const handleEliminar = async (id) => {
     const confirm = await Swal.fire({
@@ -56,11 +56,7 @@ export default function MyPost() {
 
         if (!res.ok) throw new Error("No se pudo eliminar el post");
 
-        Swal.fire(
-          "Eliminado",
-          "El post fue eliminado correctamente",
-          "success"
-        );
+        Swal.fire("Eliminado", "El post fue eliminado correctamente", "success");
 
         setPosts(posts.filter((post) => post._id !== id));
       } catch (error) {
@@ -80,6 +76,7 @@ export default function MyPost() {
   if (cargando) {
     return <p>Cargando publicaciones...</p>;
   }
+
 
   return (
     <div className="mis-posts-container">
@@ -116,14 +113,14 @@ export default function MyPost() {
                   </div>
                 </div>
                 <p>{post.epigrafe}...</p>
-                <div className="post-actions">
-                  <button onClick={() => navigate(`/editar/${post._id}`)}>
-                    Editar
-                  </button>
-                  <button onClick={() => handleEliminar(post._id)}>
-                    Eliminar
-                  </button>
-                </div>
+              </div>
+              <div className="post-actions">
+                <button onClick={() => navigate(`/editar/${post._id}`)}>
+                  Editar
+                </button>
+                <button onClick={() => handleEliminar(post._id)}>
+                  Eliminar
+                </button>
               </div>
             </div>
           );
