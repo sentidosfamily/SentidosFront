@@ -88,20 +88,20 @@ const PostCompleto = () => {
   
   <div className="imagen-fija-1200" dangerouslySetInnerHTML={{ __html: post.contenido }} />
         
-      <div className="imagenes-epigrafes">
-        {post.imagenes &&
-          post.imagenes.map((url, i) => (
-            <div key={i} className="image-block">
-              <img
-                className="imagen-fija-1200"
-                src={url}
-                alt={`img-${i}`}
-                style={{ width: "300px", height: "300px", objectFit: "cover" }}
-              />
-              <p className="epigrafe-text">{post.epigrafes?.[i]}</p>
-            </div>
-          ))}
-      </div>
+      // <div className="imagenes-epigrafes">
+      //   {post.imagenes &&
+      //     post.imagenes.map((url, i) => (
+      //       <div key={i} className="image-block">
+      //         <img
+      //           className="imagen-fija-1200"
+      //           src={url}
+      //           alt={`img-${i}`}
+      //           style={{ width: "300px", height: "300px", objectFit: "cover" }}
+      //         />
+      //         <p className="epigrafe-text">{post.epigrafes?.[i]}</p>
+      //       </div>
+      //     ))}
+      // </div>
 
       <div className="share-section">
         <h3>Compartir en redes:</h3>
