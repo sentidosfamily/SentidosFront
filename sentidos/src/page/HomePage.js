@@ -28,7 +28,7 @@ export default function HomePage() {
     fetchPosts();
   }, []);
 
-  const postsToShow = posts.slice(0, 6);
+  const postsToShow = posts.slice(0, 8);
 
   return (
     <>
