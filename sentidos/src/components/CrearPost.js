@@ -104,6 +104,8 @@ const CrearPost = () => {
 
     const avatar = localStorage.getItem("avatar") || "";
 
+    const PostId = localStorage.getItem("userId");
+    
     const nuevoPost = {
       titulo,
       autor,
@@ -116,7 +118,10 @@ const CrearPost = () => {
       categoria,
       fecha: new Date().toISOString(),
       avatar,
+      PostId, 
     };
+    
+    
 
     try {
       const res = await fetch("https://sentidos-front-lkxh.vercel.app/api/posts", {
