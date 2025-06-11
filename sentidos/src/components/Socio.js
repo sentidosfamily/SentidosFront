@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
-
 import Logo from "../assets/Juego.jpeg";
 import LogoSentidos from "../assets/Sentidos Flap Png.png";
+
 import "../style/Socio.css";
 import html2canvas from "html2canvas";
 
@@ -280,21 +280,55 @@ const SocioDashboard = () => {
       handleFunctionBlocked();
       return;
     }
-
+  
     Swal.fire({
       title: "¿Seguro que quieres cambiar la contraseña?",
       input: "password",
       inputPlaceholder: "Nueva contraseña",
+      inputAttributes: {
+        autocapitalize: "off",
+        autocorrect: "off",
+      },
       showCancelButton: true,
       confirmButtonText: "Cambiar",
       cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+      preConfirm: async (newPassword) => {
+        if (!newPassword || newPassword.length < 6) {
+          Swal.showValidationMessage("La contraseña debe tener al menos 6 caracteres");
+          return false;
+        }
+  
+        const token = localStorage.getItem("token");
+        try {
+          const res = await fetch("https://sentidos-front-lkxh.vercel.app/api/cambiar-password-logueado", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ nuevaPassword: newPassword }),
+          });
+  
+          const data = await res.json();
+  
+          if (!res.ok || !data.success) {
+            throw new Error(data.error || "Error al cambiar la contraseña");
+          }
+  
+          return true;
+        } catch (error) {
+          Swal.showValidationMessage(`Error: ${error.message}`);
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Success", "Contraseña cambiada correctamente", "success");
+        Swal.fire("Éxito", "Contraseña cambiada correctamente", "success");
       }
     });
   };
-
+  
   const handleConfirmPayQuota = () => {
     if (!socioData?.active) {
       handleFunctionBlocked();
