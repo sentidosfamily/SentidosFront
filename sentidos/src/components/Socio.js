@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import Logo from "../assets/Juego.jpeg";
 import LogoSentidos from "../assets/Sentidos Flap Png.png";
 
@@ -275,31 +276,51 @@ const SocioDashboard = () => {
     }
   };
 
+
+  
+  const MySwal = withReactContent(Swal);
+  
   const handleConfirmPasswordChange = () => {
     if (!socioData?.active) {
       handleFunctionBlocked();
       return;
     }
   
+    let showPassword = false;
+  
     Swal.fire({
       title: "¿Seguro que quieres cambiar la contraseña?",
-      input: "password",
-      inputPlaceholder: "Nueva contraseña",
-      inputAttributes: {
-        autocapitalize: "off",
-        autocorrect: "off",
-      },
+      html: `
+        <input id="swal-input-password" type="password" class="swal2-input" placeholder="Nueva contraseña" />
+        <button type="button" id="toggle-password" class="swal2-styled" style="margin-top: 10px;">
+          👁️ Mostrar
+        </button>
+      `,
+      focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: "Cambiar",
       cancelButtonText: "Cancelar",
       showLoaderOnConfirm: true,
-      preConfirm: async (newPassword) => {
+      didOpen: () => {
+        const passwordInput = Swal.getPopup().querySelector("#swal-input-password");
+        const toggleBtn = Swal.getPopup().querySelector("#toggle-password");
+  
+        toggleBtn.addEventListener("click", () => {
+          showPassword = !showPassword;
+          passwordInput.type = showPassword ? "text" : "password";
+          toggleBtn.textContent = showPassword ? "🙈 Ocultar" : "👁️ Mostrar";
+        });
+      },
+      preConfirm: async () => {
+        const newPassword = Swal.getPopup().querySelector("#swal-input-password").value;
+  
         if (!newPassword || newPassword.length < 6) {
           Swal.showValidationMessage("La contraseña debe tener al menos 6 caracteres");
           return false;
         }
   
         const token = localStorage.getItem("token");
+  
         try {
           const res = await fetch("https://sentidos-front-lkxh.vercel.app/api/cambiar-password-logueado", {
             method: "PUT",
