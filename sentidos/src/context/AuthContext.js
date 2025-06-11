@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
       role: localStorage.getItem("role") || "",
       id: localStorage.getItem("userId") || "",
       nombre: localStorage.getItem("nombre") || "Usuario",
+      PostId: localStorage.getItem("PostId") || "No hay Post",
       avatar:
         localStorage.getItem("avatar") ||
         "https://cdn-icons-png.flaticon.com/512/64/64572.png", // fallback avatar
@@ -30,7 +31,6 @@ export const AuthProvider = ({ children }) => {
     // Solo seteo user si existen datos esenciales
     if (storedUser.username && storedUser.role && storedUser.id) {
       setUser(storedUser);
-      console.log("Avatar cargado desde localStorage:", storedUser.avatar);
     }
 
     setLoading(false);
@@ -63,6 +63,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("nombre", data.nombre);
     localStorage.setItem("habilitado", data.active);
     localStorage.setItem("userId", data._id);
+    localStorage.setItem("PostId", data.PostId);
     localStorage.setItem("avatar", avatarUrl);
 
     // Actualizo el estado del usuario
@@ -72,7 +73,8 @@ export const AuthProvider = ({ children }) => {
       id: data._id,
       nombre: data.nombre,
       active: data.active,
-      avatar: avatarUrl,
+      PostId: data.userId,
+      avatar: avatarUrl,  
     };
 
     setUser(fetchedUser);
@@ -107,3 +109,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+     
